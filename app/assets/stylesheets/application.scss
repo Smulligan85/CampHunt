@@ -16,11 +16,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-body {
-  background-image: url("camphuntlanding.jpeg");
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
+body.landing {
+    background-image: url("camphuntlanding.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
 
 .landing-text {
   text-align: center;
