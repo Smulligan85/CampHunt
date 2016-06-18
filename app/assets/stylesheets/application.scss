@@ -16,13 +16,20 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-body.landing {
-    background-image: url("camphuntlanding.jpeg");
-    background-repeat: no-repeat;
-    background-size: 100%;
+body {
+  background: #F8F8FF;
+    // background-image: url("camphuntlanding.jpeg");
+    // background-repeat: no-repeat;
+    // background-size: 100%;
   }
 
-.landing-text {
-  text-align: center;
-  color: white;
+nav.navbar {
+  background: #F8F8FF;
+  border: none;
+}
+
+.nav.navbar-nav.nav-text li a {
+  font-size: 25px;
+  font-weight: bold;
+  color: #75D701;
 }
