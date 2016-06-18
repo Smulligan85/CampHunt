@@ -5,4 +5,8 @@ class Trip < ActiveRecord::Base
   validates :name, :presence => true
   validates :start_date, :presence => true
   validates :end_date, :presence => true
+
+  def self.upcoming
+    Trip.where(:start_date => Date.today..(Date.today + 1.months))
+  end
 end
