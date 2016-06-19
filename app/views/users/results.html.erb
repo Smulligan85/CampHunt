@@ -1,0 +1,15 @@
+<h1>Here are your results for <%= @json["resultset"]["pname"].titlecase %></h1>
+
+<table class="table table-striped">
+  <% if @json["resultset"]["result"].is_a?(Array) %>
+    <% @json["resultset"]["result"].each do |park| %>
+      <tr>
+        <td><%= park["facilityName"].titlecase %></td>
+      </tr>
+    <% end %>
+  <% else %>
+      <tr>
+        <td><%= @json["resultset"]["result"]["facilityName"].titlecase %></td>
+      </tr>
+  <% end %>
+</table>

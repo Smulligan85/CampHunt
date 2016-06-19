@@ -1,0 +1,26 @@
+<div class="col-md-6">
+  <h2>Find a new adventure</h2>
+  <%= form_tag("users/results", method: "post") do %>
+    <%= label_tag("Park Name") %>
+    <%= text_field_tag(:pname) %>
+    <%= submit_tag("Search") %>
+  <% end %>
+</div>
+
+<div class="col-md-6">
+  <h2>See Upcoming Trips</h2>
+    <% Trip.upcoming.each do |trip| %>
+      <table class="table table-striped">
+        <tr>
+          <th>Trip Name</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+        </tr>
+        <tr>
+          <td><%= trip.name %></td>
+          <td><%= trip.start_date_formatter %></td>
+          <td><%= trip.end_date_formatter %></td>
+        </tr>
+      </table>
+    <% end %>
+</div>
