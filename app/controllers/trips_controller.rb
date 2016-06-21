@@ -5,7 +5,7 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = Trip.create(trip_params)
+    @trip = current_user.trips.create(trip_params)
     if @trip.save
       flash[:notice] = "Trip Saved"
     else
