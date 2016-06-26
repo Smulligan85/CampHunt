@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
-  resources :trips
+  resources :trips do
+    resources :supplies
+  end
   post 'trips/results'
 
   get '/auth/:twitter/callback', to: 'sessions#create'
