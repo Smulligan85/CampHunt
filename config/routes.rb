@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  post 'users/results'
 
   resources :trips
+  post 'trips/results'
 
   authenticated :user do
     root 'users#show', :as => :authenticated_root
