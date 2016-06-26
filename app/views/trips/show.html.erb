@@ -1,0 +1,6 @@
+<h1><%= @trip.name %></h1>
+<ul>
+  <% @trip.supplies.each do |supply| %>
+    <li><%= supply.name %></li>
+  <% end %>
+</ul>
