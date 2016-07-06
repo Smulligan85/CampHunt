@@ -19,6 +19,14 @@ class TripsController < ApplicationController
   def new
     @trip = Trip.new
     @name = params[:name]
+    response = Faraday.get do |req|
+      req.url "http://api.amp.active.com/camping/campground/details?"
+      req.params['api_key'] = Rails.application.secrets.active_api_key
+      req.params['contractCode'] = params[:contract_code]
+      req.params['parkId'] = params[:park_id]
+    end
+    json = JSON.parse(Hash.from_xml(response.body).to_json)
+    @description = json["detailDescription"]["description"]
   end
 
   def create
@@ -36,9 +44,20 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
   end
 
+  def update
+    @trip = Trip.find(params[:id])
+    @trip.update(trip_params)
+    if @trip.save
+      redirect_to trip_path(@trip)
+    else
+      flash[:error] = "Trip could not be updated"
+      redirect_to trip_path(@trip)
+    end
+  end
+
   private
 
   def trip_params
-    params.require(:trip).permit(:name, :start_date, :end_date, :user_id, :supplies_attributes => [:name])
+    params.require(:trip).permit(:name, :description, :start_date, :end_date, :user_id, :supplies_attributes => [:name])
   end
 end

@@ -1,6 +1,20 @@
-<h1><%= @trip.name %></h1>
-<ul>
-  <% @trip.supplies.each do |supply| %>
-    <li><%= supply.name %></li>
+<h2>Lets get ready for your trip to <%= @trip.name %></h2>
+<p><%= @trip.description %></p>
+<div class="container col-md-2">
+<h3>Supplies</h3>
+    <table class="table">
+      <% @trip.supplies.each do |supply| %>
+        <tr>
+          <td><%= supply.name %></td>
+        </tr>
+      <% end %>
+    </table>
+<%= form_for @trip do |f| %>
+  <%= f.fields_for :supplies, @trip.supplies.build do |supplies_fields| %><br>
+    <%= supplies_fields.label "Supply Name" %>
+    <%= supplies_fields.text_field :name %>
   <% end %>
-</ul>
+  <%= f.submit "Add Supply" %>
+<% end %>
+</div>
+
