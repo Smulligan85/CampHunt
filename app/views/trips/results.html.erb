@@ -6,14 +6,24 @@
       <tr>
         <td>
           <%= park["facilityName"].titlecase %></br>
-          <button><%= link_to "Create Trip", new_trip_path(name: "#{park["facilityName"].titlecase}", contract_code: "#{park["contractID"]}", park_id: "#{park["facilityID"]}") %></button>
+          <button><%= link_to "Create Trip",
+          new_trip_path(name: "#{park["facilityName"].titlecase}",
+                        contract_code: "#{park["contractID"]}",
+                        park_id: "#{park["facilityID"]}") %>
+        </button>
         </td>
       </tr>
     <% end %>
   <% else %>
       <tr>
-        <td><%= @json["resultset"]["result"]["facilityName"].titlecase %></td>
+        <td>
+          <%= @json["resultset"]["result"]["facilityName"].titlecase %><br>
+          <button><%= link_to "Create Trip",
+          new_trip_path(name: @json["resultset"]["result"]["facilityName"].titlecase,
+                        contract_code: @json["resultset"]["result"]["contractID"],
+                        park_id: @json["resultset"]["result"]["facilityID"]) %>
+        </button>
+        </td>
       </tr>
-        <button><%= link_to new_trip_path, "Create Trip" %></button>
   <% end %>
 </table>
