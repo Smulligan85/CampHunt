@@ -8,7 +8,7 @@
       </tr>
       <% @trips.each do |trip| %>
         <tr>
-          <td><%= link_to "#{trip.name}", trip_path(trip) %></td>
+          <td><%= link_to "#{trip.name}", user_trip_path(current_user, trip) %></td>
           <td><%= trip.start_date_formatter %></td>
           <td><%= trip.end_date_formatter %></td>
         </tr>

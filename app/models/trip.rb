@@ -3,14 +3,16 @@ class Trip < ActiveRecord::Base
   has_many :trip_supplies
   has_many :supplies, :through => :trip_supplies
 
-  validates :name, :presence => true
+  validates :name, :presence => true, :uniqueness => true
+  validates :description, :presence => true
+  validate :end_after_start
   validates :start_date, :presence => true
   validates :end_date, :presence => true
 
   def supplies_attributes=(supplies_hashes)
     supplies_hashes.values.each do |supply|
       supply_item = Supply.find_or_create_by(name: supply[:name])
-      self.supplies.build(name: supply_item[:name])
+      self.supplies << supply_item
     end
   end
 
@@ -25,5 +27,14 @@ class Trip < ActiveRecord::Base
   def end_date_formatter
     self.end_date.strftime("%B %d, %Y")
   end
+
+  private
+    def end_after_start
+      return if end_date.blank? || start_date.blank?
+
+      if end_date < start_date
+        errors.add(:end_date, "must be after the start date") 
+      end
+    end
 
 end

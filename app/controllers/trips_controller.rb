@@ -33,10 +33,9 @@ class TripsController < ApplicationController
     @trip = current_user.trips.create(trip_params)
     if @trip.save
       flash[:notice] = "Trip Saved"
-      redirect_to trip_path(@trip)
+      redirect_to user_trip_path(current_user, @trip)
     else
-      flash[:error] = "Trip could not be saved"
-      redirect_to root_path
+      render 'new'
     end
   end
 
@@ -48,10 +47,10 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
     @trip.update(trip_params)
     if @trip.save
-      redirect_to trip_path(@trip)
+      redirect_to user_trip_path(current_user, @trip)
     else
       flash[:error] = "Trip could not be updated"
-      redirect_to trip_path(@trip)
+      redirect_to user_trip_path(current_user, @trip)
     end
   end
 

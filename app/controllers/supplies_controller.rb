@@ -4,6 +4,7 @@ class SuppliesController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     @supplies = @trip.supplies
   end
+
   def create
     @supply = Supply.find_or_create_by(supply_params)
     @supply.save

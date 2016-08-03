@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
-  resources :trips do
-    resources :supplies
+  resources :users do
+    resources :trips, only: [:index, :show]
   end
-  post 'trips/results'
 
-  get '/auth/:twitter/callback', to: 'sessions#create'
+  resources :trips, except: [:index, :show]
+
+  resources :supplies
+
+  post 'trips/results'
 
   authenticated :user do
     root 'users#show', :as => :authenticated_root
