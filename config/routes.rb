@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
   resources :supplies
 
+  put 'trip_supplies/:id/increase', to: "trip_supplies#increase", as: "trip_supplies_increase"
+  put 'trip_supplies/:id/decrease', to: "trip_supplies#decrease", as: "trip_supplies_decrease"
+
   post 'trips/results'
 
   authenticated :user do

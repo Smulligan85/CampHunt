@@ -3,9 +3,17 @@
 <div class="container col-md-2">
 <h3>Supplies</h3>
     <table class="table">
-      <% @trip.supplies.each do |supply| %>
+      <% @trip.trip_supplies.each do |supply| %>
         <tr>
-          <td><%= supply.name %></td>
+          <td><%= Supply.find(supply.supply_id).name %>
+          <%= supply.quantity %>
+          <div style="display:inline-block;">
+            <%= button_to "+1", trip_supplies_increase_path(supply), method: :put %>
+          </div>
+          <div style="display:inline-block;">
+            <%= button_to "-1", trip_supplies_decrease_path(supply), method: :put %>
+          </div>
+          </td>
         </tr>
       <% end %>
     </table>

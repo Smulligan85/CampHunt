@@ -12,7 +12,9 @@ class Trip < ActiveRecord::Base
   def supplies_attributes=(supplies_hashes)
     supplies_hashes.values.each do |supply|
       supply_item = Supply.find_or_create_by(name: supply[:name])
-      self.supplies << supply_item
+      if supply_item.save
+        self.supplies << supply_item
+      end
     end
   end
 

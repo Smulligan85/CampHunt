@@ -49,7 +49,7 @@ class TripsController < ApplicationController
     if @trip.save
       redirect_to user_trip_path(current_user, @trip)
     else
-      flash[:error] = "Trip could not be updated"
+      flash[:error] = @errors
       redirect_to user_trip_path(current_user, @trip)
     end
   end

@@ -5,17 +5,6 @@ class SuppliesController < ApplicationController
     @supplies = @trip.supplies
   end
 
-  def create
-    @supply = Supply.find_or_create_by(supply_params)
-    @supply.save
-    redirect_to root_path
-  end
-
-  def update
-    @supply = Supply.find(params[:id])
-    @supply.update(supply_params)
-  end
-
   private
 
   def supply_params
