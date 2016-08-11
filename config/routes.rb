@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :trips, only: [:index, :show]
-    get "favorites", to: "trips#favorites", as: "favorite_trips"
+    get "trips/favorites", to: "trips#favorites", as: "favorite_trips"
   end
 
   resources :trips, except: [:index, :show]
