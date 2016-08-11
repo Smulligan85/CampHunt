@@ -1,5 +1,16 @@
 <h2>Lets get ready for your trip to <%= @trip.name %></h2>
 <p><%= @trip.description %></p>
+  <% if @trip.favorite == true %>
+    <%= button_to "Remove From Favorites",
+      update_favorite_path(@trip),
+      class: "btn btn-danger",
+      method: :put %>
+  <% else %>
+    <%= button_to "Add To Favorites",
+      update_favorite_path(@trip),
+      class: "btn btn-primary",
+      method: :put %>
+  <% end %>
 <div class="container col-md-2">
 <h3>Supplies</h3>
     <table class="table">

@@ -6,17 +6,18 @@
   <% end %>
 
 <%= form_for @trip do |f| %>
-  <% if @trip.errors.any? %>
-    <div>
-      <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
-      <ul>
-        <% @trip.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+  <div class="fields_with_errors">
+    <% if @trip.errors.any? %>
+      <div>
+        <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
+        <ul>
+          <% @trip.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
   <%= f.label "Name" %><br>
   <%= f.text_field :name, value: @name, class: "form-control" %><br>
   <%= f.label "Description" %><br>

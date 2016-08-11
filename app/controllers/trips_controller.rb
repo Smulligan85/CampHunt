@@ -1,6 +1,11 @@
 class TripsController < ApplicationController
+
   def index
     @trips = Trip.where(user_id: current_user.id)
+  end
+
+  def favorites
+    @fav_trips = Trip.where(user_id: current_user.id, favorite: true)
   end
 
   def results
@@ -54,9 +59,16 @@ class TripsController < ApplicationController
     end
   end
 
+  def update_favorite_status
+    trip = Trip.find(params[:id])
+    trip.favorite = !trip.favorite
+    trip.save
+    redirect_to user_trip_path(current_user, trip)
+  end
+
   private
 
   def trip_params
-    params.require(:trip).permit(:name, :description, :start_date, :end_date, :user_id, :supplies_attributes => [:name])
+    params.require(:trip).permit(:name, :description, :favorite, :start_date, :end_date, :user_id, :supplies_attributes => [:name])
   end
 end

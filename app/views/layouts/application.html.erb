@@ -15,6 +15,7 @@
         <% if current_user %>
           <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
           <li><%= link_to "My Trips", user_trips_path(current_user) %></li>
+          <li><%= link_to "My Favorites", user_favorite_trips_path(current_user) %></li>
         <% else %>
           <li><%= link_to "Sign In", new_user_session_path %></li>
           <li><%= link_to "Sign Up", new_user_registration_path %></li>

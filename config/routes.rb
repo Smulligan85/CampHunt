@@ -3,19 +3,21 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :trips, only: [:index, :show]
+    get "favorites", to: "trips#favorites", as: "favorite_trips"
   end
 
   resources :trips, except: [:index, :show]
+  put "trips/:id/update_favorite_status", to: "trips#update_favorite_status", as: "update_favorite"
 
   resources :supplies
 
-  put 'trip_supplies/:id/increase', to: "trip_supplies#increase", as: "trip_supplies_increase"
-  put 'trip_supplies/:id/decrease', to: "trip_supplies#decrease", as: "trip_supplies_decrease"
+  put "trip_supplies/:id/increase", to: "trip_supplies#increase", as: "trip_supplies_increase"
+  put "trip_supplies/:id/decrease", to: "trip_supplies#decrease", as: "trip_supplies_decrease"
 
-  post 'trips/results'
+  post "trips/results"
 
   authenticated :user do
-    root 'users#show', :as => :authenticated_root
+    root "users#show", :as => :authenticated_root
   end
-  root 'landing#index'
+  root "landing#index"
 end
