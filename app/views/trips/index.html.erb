@@ -5,16 +5,3 @@
   <button class="js-more" data-trip="<%= trip.id %>" data-user="<%= trip.user_id %>">Read More</button>
   <ul id="trip_<%= trip.id %>_supplies"></ul>
 <% end %>
-
-<script type="text/javascript" charset="utf-8">
-$(function() {
-  $(".js-more").on("click", function() {
-    var tripId = $(this).data("trip");
-    var userId = $(this).data("user");
-    $.get("/users/" + userId + "/trips/" + tripId + ".json", function(trip) {
-        var descriptionText = "<p>" + trip["description"] + "</p>";
-        $("#trip-" + tripId).html(descriptionText);
-    });
-  });
-});
-</script>
