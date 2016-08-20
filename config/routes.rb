@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
   resources :users do
-    resources :trips, only: [:index, :show]
     get "trips/favorites", to: "trips#favorites", as: "favorite_trips"
+    resources :trips, only: [:index, :show]
   end
 
   resources :trips, except: [:index, :show]
