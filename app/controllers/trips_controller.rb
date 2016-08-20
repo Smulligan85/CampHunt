@@ -4,6 +4,11 @@ class TripsController < ApplicationController
     @trips = Trip.where(user_id: current_user.id)
   end
 
+  def description
+    trip = Trip.find(params[:id])
+    render :plain => trip.description
+  end
+
   def favorites
     @fav_trips = Trip.where(user_id: current_user.id, favorite: true)
   end
@@ -46,6 +51,10 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render :json => @trip}
+    end
   end
 
   def update
