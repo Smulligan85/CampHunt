@@ -1,7 +1,11 @@
 class TripsController < ApplicationController
 
   def index
-    @trips = Trip.where(user_id: current_user.id)
+    @trips = current_user.trips
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render :json => @trips }
+    end
   end
 
   def description
