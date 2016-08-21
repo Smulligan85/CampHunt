@@ -1,1 +1,3 @@
-<%= @trip.supplies.last.name %>
+<%= Supply.find(@trip.trip_supplies.last.supply_id).name %>
+<%= @trip.trip_supplies.last.quantity %>
+<%= @trip.trip_supplies.last.id %>
