@@ -36,7 +36,6 @@ $(function() {
           '</tr>'
         );
         $('input#trip_supplies_attributes_0_name').val("");
-        // $(".edit_trip")[0].reset();
       }
     });
     event.preventDefault();
