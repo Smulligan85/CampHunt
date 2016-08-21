@@ -65,7 +65,7 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
     @trip.update(trip_params)
     if @trip.save
-      redirect_to user_trip_path(current_user, @trip)
+      render 'supplies/show', :layout => false
     else
       flash[:error] = @errors
       redirect_to user_trip_path(current_user, @trip)
