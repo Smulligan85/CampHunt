@@ -41,5 +41,18 @@ $(function() {
     event.preventDefault();
   });
 
+// Function to load next trip show preview via AJAX
+    $(".js-next").on("click", function() {
+    var nextTripId = parseInt($('.js-next').data("trip")) + 1;
+    var userId = $('.js-next').data("user");
+    $.get("/users/" + userId + "/trips/" + nextTripId + ".json", function(data) {
+      var trip = data.trip;
+      $(".titleName").text(trip.name);
+      $(".tripDescription").text(trip.description);
+      $(".tripLink").html('<a href="/users/' + trip.user_id + '/trips/' + trip.id + '"' + '>Go to Trip</a>');
+      $(".js-next").attr("data-trip", trip.id);
+      $(".js-next").attr("data-user", trip.user_id);
+    });
+  });
 });
 
