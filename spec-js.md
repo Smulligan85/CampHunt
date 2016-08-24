@@ -13,7 +13,9 @@ Specs:
 - [x] Include at least one link that loads or updates a resource without reloading the page
     On trip index page you can click "Read More" button to view the trip
     description.
-- [ ] Translate JSON responses into js model objects
+- [x] Translate JSON responses into js model objects
+    Trip js object translates JSON responses into js model objects inserted into
+    the DOM.
 - [ ] At least one of the js model objects must have at least one method added by your code to the prototype
 
 Confirm
