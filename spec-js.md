@@ -3,10 +3,17 @@
 Specs:
 - [x] Use jQuery for implementing new requirements
 - [x] Include a show page rendered using jQuery and an Active Model Serialization JSON backend.
-- [x] Include an index page rendered using jQuery and an Active Model Serialization JSON backend.
+    Each camping trip show page contains a button that will make a JSON request
+    to the next trips show page and preview information. Also give a link to the
+    actual show page for the previewed trip.
+- [ ] Include an index page rendered using jQuery and an Active Model Serialization JSON backend.
 - [x] Include at least one has_many relationship in information rendered via JSON
+    AJAX form submits a new supply and assigns it to a camping trip. A trip
+    has_many supplies.
 - [x] Include at least one link that loads or updates a resource without reloading the page
-- [x] Translate JSON responses into js model objects
+    On trip index page you can click "Read More" button to view the trip
+    description.
+- [ ] Translate JSON responses into js model objects
 - [ ] At least one of the js model objects must have at least one method added by your code to the prototype
 
 Confirm
