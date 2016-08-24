@@ -1,3 +1,11 @@
+function Trip(name, description, start_date, end_date, user_id) {
+  this.name = name;
+  this.description = description;
+  this.start_date = start_date;
+  this.end_date = end_date;
+  this.user_id = user_id;
+}
+
 $(function() {
 // Function to retrieve more description info on Trips index page.
   $(".js-more").on("click", function() {
