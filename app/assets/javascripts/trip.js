@@ -1,9 +1,8 @@
-function Trip(name, description, start_date, end_date, user_id) {
+function Trip(name, description, user_id, id) {
   this.name = name;
   this.description = description;
-  this.start_date = start_date;
-  this.end_date = end_date;
   this.user_id = user_id;
+  this.id = id;
 }
 
 $(function() {
@@ -57,13 +56,18 @@ $(function() {
     $(".js-next").on("click", function() {
     var nextTripId = parseInt($('.js-next').data("trip")) + 1;
     var userId = $('.js-next').data("user");
-    $.get("/users/" + userId + "/trips/" + nextTripId + ".json", function(data) {
-      var trip = data.trip;
-      $(".titleName").text(trip.name);
-      $(".tripDescription").text(trip.description);
-      $(".tripLink").html('<a href="/users/' + trip.user_id + '/trips/' + trip.id + '"' + '>Go to Trip</a>');
-      $(".js-next").attr("data-trip", trip.id);
-      $(".js-next").attr("data-user", trip.user_id);
+    $.get("/users/" + userId + "/trips/" + nextTripId + ".json", function(response) {
+      var nextTrip = new Trip(
+        response.trip.name,
+        response.trip.description,
+        response.trip.user_id,
+        response.trip.id
+      );
+      $(".titleName").text(nextTrip.name);
+      $(".tripDescription").text(nextTrip.description);
+      $(".tripLink").html('<a href="/users/' + nextTrip.user_id + '/trips/' + nextTrip.id + '"' + '>Go to Trip</a>');
+      $(".js-next").attr("data-trip", nextTrip.id);
+      $(".js-next").attr("data-user", nextTrip.user_id);
     });
   });
 });
