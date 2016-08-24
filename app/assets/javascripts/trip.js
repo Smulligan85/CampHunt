@@ -11,9 +11,13 @@ $(function() {
   $(".js-more").on("click", function() {
     var tripId = $(this).data("trip");
     var userId = $(this).data("user");
-    $.get("/users/" + userId + "/trips/" + tripId + ".json", function(trip) {
-        var descriptionText = "<p>" + trip.trip.description + "</p>";
-        $("#trip-" + tripId).html(descriptionText);
+    $.get("/users/" + userId + "/trips/" + tripId + ".json", function(response) {
+      var moreTripInfo = new Trip(
+        response.trip.name,
+        response.trip.description
+      );
+      var descriptionText = "<p>" + moreTripInfo.description + "</p>";
+      $("#trip-" + tripId).html(descriptionText);
     });
   });
 
