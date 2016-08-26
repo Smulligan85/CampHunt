@@ -20,6 +20,19 @@ $(function() {
     });
   });
 
+// Function to retrieve preview of Trips index page.
+  $(".all-trips").on("click", function() {
+    var userId = $(this).data("user");
+    $.get("/users/" + userId + "/trips.json", function(response) {
+      $.each(response, function() {
+        $.each(this, function(key, trip) {
+          var tripName = "<li>" + trip.name + "</li>";
+          $('.trip-list').append(tripName);
+        });
+      });
+    });
+  });
+
 // Function to submit supplies via AJAX
   $(".edit_trip").on("submit", function(event) {
     url = this.action;
