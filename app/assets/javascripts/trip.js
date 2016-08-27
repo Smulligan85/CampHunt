@@ -26,7 +26,10 @@ $(function() {
     $.get("/users/" + userId + "/trips.json", function(response) {
       $.each(response, function() {
         $.each(this, function(key, trip) {
-          var tripName = "<li>" + trip.name + "</li>";
+          var tripList = new Trip(
+            trip.name
+          );
+          var tripName = "<li>" + tripList.name + "</li>";
           $('.trip-list').append(tripName);
         });
       });

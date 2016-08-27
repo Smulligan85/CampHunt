@@ -3,7 +3,7 @@
   <%= form_tag("trips/results", method: "post") do %>
     <%= label_tag("Park Name") %>
     <%= text_field_tag(:pname) %>
-    <%= submit_tag("Search") %>
+    <%= submit_tag("Search", :class => "btn btn-primary") %>
   <% end %>
 </div>
 
@@ -26,8 +26,7 @@
 </div>
 
 <div class="col-md-6">
-  <button class="all-trips" data-user="<%= current_user.id %>">Preview all trips</button>
-  <ul class="trip-list">
-  </ul>
+  <button class="all-trips btn btn-primary" data-user="<%= current_user.id %>">Preview all trips</button>
+  <ol class="trip-list">
+  </ol>
 </div>
-
