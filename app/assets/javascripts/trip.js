@@ -1,9 +1,10 @@
-function Trip(name, description, user_id, id, start_date) {
+function Trip(name, description, user_id, id, start_date, end_date) {
   this.name = name;
   this.description = description;
   this.user_id = user_id;
   this.id = id;
   this.start_date = start_date;
+  this.end_date = end_date;
 }
 
 Trip.prototype.upcoming = function() {
@@ -34,21 +35,52 @@ $(function() {
     });
   });
 
-// Function to retrieve preview of Trips index page.
-  $(".all-trips").on("click", function() {
+// Function to retrieve index of Trips filtered with Trip.prototype.upcoming function
+  $(".upcoming-trips").on("click", function() {
+    $("#trip-name-head").html("Trip Name");
+    $("#start-date-head").html("Start Date");
+    $("#end-date-head").html("End Date");
     var userId = $(this).data("user");
     $.get("/users/" + userId + "/trips.json", function(response) {
       $.each(response, function() {
         $.each(this, function(key, trip) {
-          var tripList = new Trip(
-            trip.name
+          var tripData = new Trip(
+            trip.name,
+            trip.description,
+            trip.user_id,
+            trip.id,
+            trip.start_date,
+            trip.end_date
           );
-          var tripName = "<li>" + tripList.name + "</li>";
-          $('.trip-list').append(tripName);
+          if (tripData.upcoming() === true) {
+            $(".table").append("<tr>" +
+                              "<td>" + tripData.name + "</td>" +
+                              "<td>" + tripData.start_date + "</td>" +
+                              "<td>" + tripData.end_date + "</td>" +
+                              "</tr>"
+            );
+          }
         });
       });
+
     });
   });
+
+// Function to retrieve preview of Trips index page.
+  // $(".all-trips").on("click", function() {
+  //   var userId = $(this).data("user");
+  //   $.get("/users/" + userId + "/trips.json", function(response) {
+  //     $.each(response, function() {
+  //       $.each(this, function(key, trip) {
+  //         var tripList = new Trip(
+  //           trip.name
+  //         );
+  //         var tripName = "<li>" + tripList.name + "</li>";
+  //         $('.trip-list').append(tripName);
+  //       });
+  //     });
+  //   });
+  // });
 
 // Function to submit supplies via AJAX
   $(".edit_trip").on("submit", function(event) {

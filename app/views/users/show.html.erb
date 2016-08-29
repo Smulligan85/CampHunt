@@ -9,19 +9,15 @@
 
 <div class="col-md-6">
   <h2>See Upcoming Trips</h2>
+  <button data-user="<%= current_user.id %>" class="upcoming-trips btn btn-primary">See Upcoming Trips</button>
     <table class="table table-striped">
-      <tr>
-        <th>Trip Name</th>
-        <th>Start Date</th>
-        <th>End Date</th>
+      <tr id="headers">
+        <th id="trip-name-head"></th>
+        <th id="start-date-head"></th>
+        <th id="end-date-head"></th>
       </tr>
-      <% Trip.upcoming.each do |trip| %>
-        <tr>
-          <td><%= trip.name %></td>
-          <td><%= trip.start_date_formatter %></td>
-          <td><%= trip.end_date_formatter %></td>
+        <tr id="table-data">
         </tr>
-      <% end %>
     </table>
 </div>
 
