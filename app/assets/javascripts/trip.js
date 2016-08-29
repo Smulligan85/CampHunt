@@ -1,9 +1,23 @@
-function Trip(name, description, user_id, id) {
+function Trip(name, description, user_id, id, start_date) {
   this.name = name;
   this.description = description;
   this.user_id = user_id;
   this.id = id;
+  this.start_date = start_date;
 }
+
+Trip.prototype.upcoming = function() {
+  var todayDate = new Date();
+  var monthDate = new Date();
+  var oneMonthFromToday = new Date(monthDate.setMonth(todayDate.getMonth() + 1));
+  var startDate = new Date(this.start_date);
+
+  if (startDate >= todayDate && startDate <= oneMonthFromToday) {
+    return true;
+  } else {
+    return false;
+  }
+};
 
 $(function() {
 // Function to retrieve more description info on Trips index page.
