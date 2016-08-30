@@ -37,9 +37,12 @@ $(function() {
 
 // Function to retrieve index of Trips filtered with Trip.prototype.upcoming function
   $(".upcoming-trips").on("click", function() {
-    $("#trip-name-head").html("Trip Name");
-    $("#start-date-head").html("Start Date");
-    $("#end-date-head").html("End Date");
+    $(".table-striped").html(
+      "<tr>" +
+      "<th>Trip Name</th>" +
+      "<th>Start Date</th>" +
+      "<th> End Date</th>" +
+      "</tr>");
     var userId = $(this).data("user");
     $.get("/users/" + userId + "/trips.json", function(response) {
       $.each(response, function() {
@@ -65,22 +68,6 @@ $(function() {
 
     });
   });
-
-// Function to retrieve preview of Trips index page.
-  // $(".all-trips").on("click", function() {
-  //   var userId = $(this).data("user");
-  //   $.get("/users/" + userId + "/trips.json", function(response) {
-  //     $.each(response, function() {
-  //       $.each(this, function(key, trip) {
-  //         var tripList = new Trip(
-  //           trip.name
-  //         );
-  //         var tripName = "<li>" + tripList.name + "</li>";
-  //         $('.trip-list').append(tripName);
-  //       });
-  //     });
-  //   });
-  // });
 
 // Function to submit supplies via AJAX
   $(".edit_trip").on("submit", function(event) {

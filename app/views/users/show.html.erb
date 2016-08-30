@@ -8,21 +8,6 @@
 </div>
 
 <div class="col-md-6">
-  <h2>See Upcoming Trips</h2>
   <button data-user="<%= current_user.id %>" class="upcoming-trips btn btn-primary">See Upcoming Trips</button>
-    <table class="table table-striped">
-      <tr id="headers">
-        <th id="trip-name-head"></th>
-        <th id="start-date-head"></th>
-        <th id="end-date-head"></th>
-      </tr>
-        <tr id="table-data">
-        </tr>
-    </table>
-</div>
-
-<div class="col-md-6">
-  <button class="all-trips btn btn-primary" data-user="<%= current_user.id %>">Preview all trips</button>
-  <ol class="trip-list">
-  </ol>
+    <table class="table table-striped"></table>
 </div>
