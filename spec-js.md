@@ -15,6 +15,7 @@ Specs:
     Both See Upcoming Trips and More Info button on Trip index page renders
     resource
 - [x] Translate JSON responses into js model objects
+    trip controller action JSON responses translated into Trip js objects.
 - [x] At least one of the js model objects must have at least one method added by your code to the prototype
     Trip.prototype.upcoming
 

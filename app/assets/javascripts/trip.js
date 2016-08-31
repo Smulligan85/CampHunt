@@ -1,3 +1,4 @@
+// Trip object
 function Trip(name, description, user_id, id, start_date, end_date) {
   this.name = name;
   this.description = description;
@@ -7,6 +8,7 @@ function Trip(name, description, user_id, id, start_date, end_date) {
   this.end_date = end_date;
 }
 
+// Trip object function to filter trips within 30 days
 Trip.prototype.upcoming = function() {
   var todayDate = new Date();
   var monthDate = new Date();
@@ -18,6 +20,14 @@ Trip.prototype.upcoming = function() {
   } else {
     return false;
   }
+};
+
+// Date parse function
+var dateParse = function(date) {
+  date_str = date;
+  date_arr = date_str.split("-");
+  date_str = date_arr[1] + "-" + date_arr[2] + "-" + date_arr[0];
+  return date_str;
 };
 
 $(function() {
@@ -58,8 +68,8 @@ $(function() {
           if (tripData.upcoming() === true) {
             $(".table").append("<tr>" +
                               "<td>" + tripData.name + "</td>" +
-                              "<td>" + tripData.start_date + "</td>" +
-                              "<td>" + tripData.end_date + "</td>" +
+                              "<td>" + dateParse(tripData.start_date) + "</td>" +
+                              "<td>" + dateParse(tripData.end_date) + "</td>" +
                               "</tr>"
             );
           }
