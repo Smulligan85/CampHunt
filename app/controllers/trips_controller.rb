@@ -8,6 +8,11 @@ class TripsController < ApplicationController
     end
   end
 
+  def upcoming
+    @trips = current_user.trips.upcoming
+    render :json => @trips
+  end
+
   def description
     trip = Trip.find(params[:id])
     render :plain => trip.description

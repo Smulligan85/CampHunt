@@ -30,6 +30,7 @@ var dateParse = function(date) {
   return date_str;
 };
 
+
 $(function() {
 // Function to retrieve more description info on Trips index page.
   $(".js-more").on("click", function() {
@@ -54,7 +55,7 @@ $(function() {
       "<th> End Date</th>" +
       "</tr>");
     var userId = $(this).data("user");
-    $.get("/users/" + userId + "/trips.json", function(response) {
+    $.get("/users/" + userId + "/trips/upcoming.json", function(response) {
       $.each(response, function() {
         $.each(this, function(key, trip) {
           var tripData = new Trip(
@@ -65,14 +66,14 @@ $(function() {
             trip.start_date,
             trip.end_date
           );
-          if (tripData.upcoming() === true) {
+          //if (tripData.upcoming() === true) {
             $(".table").append("<tr>" +
                               "<td>" + tripData.name + "</td>" +
                               "<td>" + dateParse(tripData.start_date) + "</td>" +
                               "<td>" + dateParse(tripData.end_date) + "</td>" +
                               "</tr>"
             );
-          }
+          //}
         });
       });
 
@@ -130,4 +131,3 @@ $(function() {
     });
   });
 });
-

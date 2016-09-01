@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
   resources :users do
+    get "trips/upcoming", to: "trips#upcoming", as: "upcoming_trips"
     get "trips/favorites", to: "trips#favorites", as: "favorite_trips"
     resources :trips, only: [:index, :show]
   end
