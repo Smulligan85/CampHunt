@@ -9,14 +9,7 @@ class Trip < ActiveRecord::Base
   validates :start_date, :presence => true
   validates :end_date, :presence => true
 
-  def supplies_attributes=(supplies_hashes)
-    supplies_hashes.values.each do |supply|
-      supply_item = Supply.find_or_create_by(name: supply[:name])
-      if supply_item.save
-        self.supplies << supply_item
-      end
-    end
-  end
+  accepts_nested_attributes_for :supplies
 
   def self.upcoming
     Trip.where(:start_date => Date.today..(Date.today + 1.months))
