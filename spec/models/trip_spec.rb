@@ -1,5 +1,3 @@
-# describe Contact do it "is valid with a firstname, lastname and email" it "is invalid without a firstname" it "is invalid without a lastname" it "is invalid without an email address" it "is invalid with a duplicate email address" it "returns a contact's full name as a string" end
-
 require 'rails_helper'
 
 describe Trip do
@@ -7,8 +5,8 @@ describe Trip do
     trip = Trip.new(
       name: "Trip to Yosemite",
       description: "Winter to trip to Yosemite Lodge for snowshoeing",
-      start_date: "12-04-2016",
-      end_date: "12-06-2016"
+      start_date: "Tue, 04 Apr 2016",
+      end_date: "Tue, 06 Apr 2016"
     )
     expect(trip).to be_valid
   end
@@ -35,5 +33,25 @@ describe Trip do
     trip = Trip.new(end_date: nil)
     trip.valid?
     expect(trip.errors[:end_date]).to include("can't be blank")
+  end
+
+  it "returns the formatted start_date" do
+    trip = Trip.new(
+      name: "Trip to Yosemite",
+      description: "Winter to trip to Yosemite Lodge for snowshoeing",
+      start_date: "Tue, 04 Dec 2016",
+      end_date: "Tue, 06 Dec 2016"
+    )
+    expect(trip.start_date_formatter).to eq("December 04, 2016")
+  end
+
+  it "returns the formatted end_date" do
+    trip = Trip.new(
+      name: "Trip to Yosemite",
+      description: "Winter to trip to Yosemite Lodge for snowshoeing",
+      start_date: "Tue, 04 Dec 2016",
+      end_date: "Tue, 06 Dec 2016"
+    )
+    expect(trip.end_date_formatter).to eq("December 06, 2016")
   end
 end
