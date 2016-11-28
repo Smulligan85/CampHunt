@@ -41,6 +41,15 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry'
   gem 'rspec-rails', '~> 3.4'
+  gem 'factory_girl_rails', '~> 4.7'
+end
+
+group :test do
+  gem 'faker', '~> 1.6', '>= 1.6.6'
+  gem 'capybara', '~> 2.10', '>= 2.10.1'
+  gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
+  gem 'launchy', '~> 2.4', '>= 2.4.3'
+  gem 'selenium-webdriver', '~> 3.0', '>= 3.0.3'
 end
 
 group :development do
