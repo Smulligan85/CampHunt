@@ -1,5 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe Supply, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Supply do
+  it "is valid with name" do
+    supply = Supply.new(name: "Tent")
+    expect(supply).to be_valid
+  end
+
+  it "is invalid without a name" do
+    supply = Supply.new(name: nil)
+    supply.valid?
+    expect(supply.errors[:name]).to include("can't be blank")
+  end
+
 end

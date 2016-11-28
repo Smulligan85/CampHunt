@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+describe User do
 
   it "is valid with email and password" do 
     user = User.new(
